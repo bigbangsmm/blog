@@ -1,6 +1,6 @@
 import satori from 'satori';
 import { html } from 'satori-html';
-import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 import siteConfig from '@/config/site.config';
 
 export interface OGImageOptions {
@@ -82,13 +82,7 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
   });
 
   // Convert SVG to PNG
-  const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: 'width',
-      value: 1200,
-    },
-  });
-
-  const pngData = resvg.render();
-  return pngData.asPng();
+  return Buffer.from(
+    await sharp(Buffer.from(svg)).resize(1200).png().toBuffer()
+  );
 }
