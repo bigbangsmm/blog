@@ -16,11 +16,12 @@ interface AvatarGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ref'> {
   size?: NonNullable<AvatarVariants['size']>;
 }
 
-const overflowSizes = {
+const overflowSizes: Record<string, string> = {
   xs: 'w-6 h-6 text-[8px]',
   sm: 'w-8 h-8 text-[10px]',
   md: 'w-10 h-10 text-xs',
   lg: 'w-12 h-12 text-sm',
+  xl: 'w-14 h-14 text-base',
 };
 
 export function AvatarGroup({ ref, avatars, max = 4, size = 'md', className, ...rest }: AvatarGroupProps) {
